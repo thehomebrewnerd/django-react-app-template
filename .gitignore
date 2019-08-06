@@ -30,4 +30,4 @@ Pipfile
 Pipfile.lock
 
 #Django
-*.sqlite
+*.sqlite3
