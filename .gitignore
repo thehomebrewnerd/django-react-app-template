@@ -25,9 +25,5 @@ yarn-error.log*
 #VS Code
 .vscode
 
-#pipenv
-Pipfile
-Pipfile.lock
-
 #Django
 *.sqlite3
