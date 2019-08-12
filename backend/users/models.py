@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
@@ -36,6 +37,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     lname = models.CharField("Last Name", max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     objects = UserProfileManager()
 
@@ -53,3 +56,18 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of the UserProfile model"""
         return self.email
+
+
+class ProfileFeedItem(models.Model):
+    """Model for user profile status updates"""
+
+    user_profile = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    status_text = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """Return string representation of the UserProfileFeed model"""
+        return self.status_text

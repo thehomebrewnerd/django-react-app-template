@@ -5,6 +5,7 @@ from users import views
 
 router = DefaultRouter()
 router.register('profile', views.UserProfileViewset)
+router.register('feed', views.UserProfileFeedItemViewset)
 
 urlpatterns = [
     path('', include(router.urls)),
